@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Nyx Auto-Caller</string>
+    <string name="title_activity_main">Nyx Auto-Caller</string>
+    <string name="package_name">com.nyx.autocaller</string>
+    <string name="custom_url_scheme">com.nyx.autocaller</string>
+</resources>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Nyx Agent</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header id="header">
+    <div class="logo">
+      <div class="logo-icon">N</div>
+      <div>
+        <div class="logo-title">Nyx Agent</div>
+        <div class="logo-sub">Auto-Caller</div>
+      </div>
+    </div>
+    <div id="statusBadge" class="status-badge offline">Offline</div>
+  </header>
+
+  <!-- Config -->
+  <section class="section">
+    <h2 class="section-title">⚙️ Dashboard Connection</h2>
+    <div class="card">
+      <div class="field">
+        <label>Vercel Dashboard URL</label>
+        <input type="url" id="apiUrl" placeholder="https://your-nyx.vercel.app" autocapitalize="off" autocorrect="off">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Poll (s)</label>
+          <input type="number" id="pollInterval" value="5" min="2" max="60">
+        </div>
+        <div class="field">
+          <label>Ring (s)</label>
+          <input type="number" id="ringTimeout" value="30" min="10" max="120">
+        </div>
+        <div class="field">
+          <label>Delay (s)</label>
+          <input type="number" id="callDelay" value="10" min="3" max="120">
+        </div>
+      </div>
+      <button class="btn btn-secondary" onclick="saveConfig()">💾 Save</button>
+    </div>
+  </section>
+
+  <!-- Agent Control -->
+  <section class="section">
+    <h2 class="section-title">📞 Agent Control</h2>
+    <div class="card control-card">
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-val" id="statCompleted">0</div>
+          <div class="stat-lbl">Completed</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val" id="statFailed">0</div>
+          <div class="stat-lbl">Failed</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val" id="statPending">0</div>
+          <div class="stat-lbl">Pending</div>
+        </div>
+      </div>
+
+      <div id="currentCall" class="current-call" style="display:none">
+        <div class="call-label">Now Calling</div>
+        <div class="call-name" id="callName">-</div>
+        <div class="call-phone" id="callPhone">-</div>
+        <div class="call-status" id="callStatus">Dialing...</div>
+      </div>
+
+      <div id="instructionsPreview" class="instructions-preview" style="display:none">
+        <div class="instr-label">📋 Active Instructions</div>
+        <div class="instr-text" id="instrText">-</div>
+      </div>
+
+      <button id="toggleAgent" class="btn btn-start" onclick="toggleAgent()">
+        ▶ Start Agent
+      </button>
+      <p style="text-align:center;font-size:11px;color:var(--text3);margin-top:10px">
+        AI instructions are controlled from the Vercel dashboard
+      </p>
+    </div>
+  </section>
+
+  <!-- Log -->
+  <section class="section">
+    <h2 class="section-title">📋 Activity Log</h2>
+    <div class="card">
+      <div id="logContainer" class="log-container">
+        <div class="log-entry info">Agent ready. Enter dashboard URL and press Start.</div>
+      </div>
+      <button class="btn btn-ghost" onclick="clearLog()">Clear Log</button>
+    </div>
+  </section>
+
+  <script src="agent.js"></script>
+</body>
+</html>
